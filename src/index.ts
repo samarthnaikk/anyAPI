@@ -19,13 +19,17 @@ async function main() {
   const page = await browser.newPage();
   console.log('📄 New page created');
 
-  // Navigate to a test page to verify browser is working
-  await page.goto('https://example.com');
-  console.log('🌐 Navigated to example.com');
+  // Set content directly (no network access needed)
+  await page.setContent('<html><head><title>anyAPI Test</title></head><body><h1>Hello from anyAPI!</h1></body></html>');
+  console.log('📝 Content set successfully');
 
   // Get the page title
   const title = await page.title();
   console.log(`📋 Page title: ${title}`);
+
+  // Get the heading text
+  const heading = await page.textContent('h1');
+  console.log(`📰 Heading: ${heading}`);
 
   // Close the browser
   await browser.close();
